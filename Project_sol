@@ -1,0 +1,39 @@
+ls = []
+a = []
+while True:
+    command = input('Enter command (i or s or t or e): ')
+    if command == 'i':
+        n = int(input('Enter # of sticks: '))
+        for i in range(n):
+            s = int(input('Enter length of stick: '))
+            ls.append(s)
+        print(ls)
+        continue
+
+    elif command == 's':
+        target = int(input('Enter the target number: '))
+        for i in ls:
+            for j in ls:
+                if (i + j) == target:
+                    if len(a) == 2:
+                        break
+                    a.append(ls.index(i))
+                    a.append(ls.index(j))
+                    print(a)
+        if a == []:
+            print('Cannot find!')
+    elif command == 't':
+        ls.sort(reverse=True)
+        maxi = 0
+        n = len(ls)
+        for i in range(n-2):
+            for j in range(i+1, n-1):
+                for k in range(j+1, n):
+                    a = ls[i]
+                    b = ls[j]
+                    c = ls[k]
+                    if a < b + c and b < a + c and c < a + b:
+                        maxi = max(maxi, a + b + c)
+        print(maxi)
+    elif command == 'e':
+        break
